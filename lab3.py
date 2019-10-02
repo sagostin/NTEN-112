@@ -106,3 +106,66 @@ while blocks >= needed:
     needed = needed + 1
 
 print("Height is: " + str(height))
+
+# c0 idk german dude
+c0 = int(input("Enter a number: "))
+steps = 0
+while c0 != 1:
+    if c0 % 2 == 0:
+        c0 = c0 / 2
+    elif c0 % 2 != 0:
+        c0 = 3 * c0 + 1
+    elif c0 != 1:
+        c0 = c0 / 2
+    print(int(c0))
+    steps = steps + 1
+print("Steps: " + str(steps))
+
+# simple list stuff
+hatList = [1, 2, 3, 4, 5]  # This is an existing list of numbers hidden in the hat.
+
+middle_number = int(input("Input a number to replace the middle number: "))
+hatList[2] = middle_number
+del hatList[len(hatList) - 1]
+print(len(hatList))
+print(hatList)
+
+# Beatles shoit
+# step 1
+beatles = []
+print("Step 1:", beatles)
+
+# step 2
+beatles.append("John Lennon")
+beatles.append("Paul McCartney")
+beatles.append("George Harrison")
+print("Step 2:", beatles)
+
+# step 3
+for members in range(2):
+    beatles.append(str(input("Enter another name: ")))
+
+print("Step 3:", beatles)
+
+# step 4
+del beatles[-1]
+del beatles[-1]
+print("Step 4:", beatles)
+
+# step 5
+beatles.insert(0, "RingoStarr")
+print("Step 5:", beatles)
+
+# testing list legth
+print("The Fab", len(beatles))
+
+# remove double shits
+mylist = [1, 2, 4, 4, 1, 4, 2, 6, 2, 9]
+newlist = []
+
+for num in mylist:
+    if num not in newlist:
+        newlist.append(num)
+mylist = newlist[:]
+print("The list with unique elements only: ")
+print(mylist)
