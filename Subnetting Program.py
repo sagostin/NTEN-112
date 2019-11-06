@@ -71,6 +71,8 @@ def createNewAddress(network, incrementCount):
         else:
             octets.append(int(ip))
 
+    # to do : check subnet and make sure the thing fits within it
+
     if bitPosition != 0:
         octets[bitPosition] = octets[bitPosition] + 1
         octets.append(incrementCount - 254)
