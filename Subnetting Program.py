@@ -1,3 +1,5 @@
+import ipaddress
+
 # Input
 networkIP = input("What is the network IP? (ie; 172.16.0.0) : ")
 subnetMask = input("What is the network's subnet mask? (ie; 255.255.0.0) : ")
@@ -57,34 +59,24 @@ if hosts >= maximumHosts(subnetMask):
 networks = {}
 
 
-# Create the broadcast ip based on the ip given
-def createNewAddress(network, incrementCount):
-    octets = []
-    bitPosition = 0
+def createNetworkAddress(network):
+    octets = network.split('.');
 
-    for ip in network.split('.'):
-        if len(octets) == 3:
-            if (int(ip) + incrementCount) >= 255:
-                bitPosition = len(octets) - 1
-            else:
-                octets.append(int(ip) + incrementCount)
-        else:
-            octets.append(int(ip))
-
-    # to do : check subnet and make sure the thing fits within it
-
-    if bitPosition != 0:
-        octets[bitPosition] = octets[bitPosition] + 1
-        octets.append(incrementCount - 254)
+    octets[3] = str(int(octets[3]) + 1)
 
     return str(octets[0]) + "." + str(octets[1]) + "." + str(octets[2]) + "." + str(octets[3])
+
+# Create the broadcast ip based on the ip given
+def createBroadcastAddress(network, incrementCount):
+    host = ipaddress.ip_network(network + "/" + str(hostCountToSubnet(incrementCount)))
+    return host.broadcast_address
 
 
 def createNetworkAndBroadcast(previousNetworkBroadcast, hostCount):
     network = []
 
-    network.append(createNewAddress(previousNetworkBroadcast, 1))
-    network.append(createNewAddress(network[0], hostCount))
+    network.append(createNetworkAddress(previousNetworkBroadcast))
+    network.append(createBroadcastAddress(network[0], hostCount))
 
     return network
 
@@ -94,7 +86,7 @@ networks = {}
 for networkNum, hostCount in networkHostCount.items():
     if len(networks) == 0:
         networks[networkNum] = [networkIP,
-                                createNewAddress(networkIP, hostRequiredSubnetCount(hostCount))]
+                                createBroadcastAddress(networkIP, hostRequiredSubnetCount(hostCount))]
     else:
         networks[networkNum] = createNetworkAndBroadcast(str(networks.get(int(networkNum) - 1)[1]),
                                                          hostRequiredSubnetCount(hostCount))
