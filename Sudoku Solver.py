@@ -7,13 +7,53 @@ board = {}
 def start():
     loadBoard(3, 3)
 
-    # Top Left 0,0
+    # 0,0
     preloadNumbers(0, 0, 5)
     preloadNumbers(1, 0, 3)
     preloadNumbers(0, 1, 6)
     preloadNumbers(1, 2, 9)
     preloadNumbers(2, 2, 8)
+
+    # 0,1
     preloadNumbers(4, 0, 7)
+    preloadNumbers(3, 1, 1)
+    preloadNumbers(4, 1, 9)
+    preloadNumbers(5, 1, 5)
+
+    # 0,2
+    preloadNumbers(7, 2, 6)
+
+    # 1,0
+    preloadNumbers(0, 3, 8)
+    preloadNumbers(0, 4, 4)
+    preloadNumbers(0, 5, 7)
+
+    # 1,1
+    preloadNumbers(4, 3, 6)
+    preloadNumbers(3, 4, 8)
+    preloadNumbers(5, 4, 5)
+    preloadNumbers(4, 5, 2)
+
+    # 1,2
+    preloadNumbers(8, 3, 3)
+    preloadNumbers(8, 4, 1)
+    preloadNumbers(8, 5, 6)
+
+    # 2,0
+    preloadNumbers(1, 6, 6)
+
+    # 2,1
+    preloadNumbers(3, 7, 4)
+    preloadNumbers(4, 7, 1)
+    preloadNumbers(5, 7, 9)
+    preloadNumbers(4, 8, 8)
+
+    # 2,2
+    preloadNumbers(6, 6, 2)
+    preloadNumbers(7, 6, 8)
+    preloadNumbers(8, 7, 5)
+    preloadNumbers(7, 8, 7)
+    preloadNumbers(8, 8, 9)
 
     displayBoard()
 
